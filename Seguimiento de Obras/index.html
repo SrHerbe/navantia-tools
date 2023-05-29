@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Seguimiento</title>
+        <link rel="stylesheet" href="estilos.css"/>
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+        <link rel="shortcut icon" href="./src/favicon.png">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/logo.png" width="30" height="30" alt="Logotipo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../in" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Posventa
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../Comprobar Facturación/index.html">Comprobar facturación</a>
+                        <a class="dropdown-item" href="../generadorPPTO/index.html">Generador PPTO</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        IPP
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../Seguimiento de Obras/index.html">Seguimiento Ordenes de Fabricación</a>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+        <section class="contenedor_principal" id="contenedor_principal">
+            <div id="info">
+                <a href="">
+                    <img src="./src/icon_info.png" alt="icon_info" width="35px" height="35px">
+                </a>
+            </div>
+            <h1>Control Seguimiento Ordenes de Fabricación</h1>
+            <div class="buttons">
+                <label for="fileInput" id="uploadBtn">
+                    <img
+                        src="./src/icon_upload.png"
+                        alt="icon_upload"
+                        title="Subir CSV"
+                        width="120px"
+                        height="120px"
+                    />
+                </label>
+                <input type="file" name="fileInput" id="fileInput" />
+
+                <button id="visualizarBtn" class="button">
+                    <img
+                        src="./src/icon_visualizar.png"
+                        alt="icon_view"
+                        title="Visualizar Tabla"
+                        width="100px"
+                        height="100px"
+                    />
+                </button>
+
+                <button id="downloadBtn" class="button">
+                    <img
+                        src="./src/icon_download.png"
+                        alt="icon_download"
+                        title="Descargar CSV"
+                        width="100px"
+                        height="100px"
+                    />
+                </button>
+            </div>
+        </section>
+
+        <section id="section_tabla">
+            <div class="contenedor_btn_copy">
+                <button onclick="copyTable()">Copiar tabla</button>
+            </div>
+
+            <div id="contenedor_tabla">
+                <table id="tabla">
+                    <tr>
+                        <td class="tabla_cabecera">Orden</td>
+                        <td class="tabla_cabecera">Material</td>
+                        <td class="tabla_cabecera">Texto breve material</td>
+                        <td class="tabla_cabecera">Avance</td>
+                        <td class="tabla_cabecera">SEGUIMIENTO ORDENES</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <script src="script.js"></script>
+    </body>
+</html>

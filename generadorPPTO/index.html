@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador PPTO</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/logo.png" width="30" height="30" alt="Logotipo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Posventa
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="../Comprobar Facturación/index.html">Comprobar facturación</a>
+                    <a class="dropdown-item" href="../generadorPPTO/index.html">Generador PPTO</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    IPP
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="../Seguimiento de Obras/index.html">Seguimiento Ordenes de Fabricación</a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+    <div class="container">
+
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 2rem;">
+            <strong>Atención:</strong> Esta página aún se encuentra en desarrollo.
+        </div>
+
+
+        <h1 class="my-4">Generador de PPTO</h1>
+        <form>
+            <div class="pt-4 pb-4 border-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="numOferta" class="form-label">Nº de oferta</label>
+                        <input type="text" class="form-control" id="numOferta" placeholder="23-XX1,23-XX2">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numObra" class="form-label">Nº de obra</label>
+                        <input type="text" class="form-control" id="numObra" placeholder="XG-XXXX">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select class="form-select" id="cliente">
+                            <!-- Aquí irán las opciones del menú desplegable generadas a partir del archivo CSV -->
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="denominacion" class="form-label">Denominación</label>
+                        <input type="text" class="form-control" id="denominacion" placeholder="Breve descripción">
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="rev" class="form-label">Revisión</label>
+                        <input type="number" class="form-control" id="rev">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numPedido" class="form-label">Nº de pedido</label>
+                        <input type="text" class="form-control" id="numPedido">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numSAPCliente" class="form-label">Nº SAP Cliente</label>
+                        <input type="text" class="form-control" id="numSAPCliente">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="fechaEmision" class="form-label">Fecha de emisión</label>
+                        <input type="date" class="form-control" id="fechaEmision">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fechaInicio" class="form-label">Fecha prevista de inicio</label>
+                        <input type="date" class="form-control" id="fechaInicio">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fechaTerminacion" class="form-label">Fecha prevista de terminación</label>
+                        <input type="date" class="form-control" id="fechaTerminacion">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h4>Horas propias Fabricación en Talleres Propios</h4>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="costeHora" class="form-label">Coste hora</label>
+                    <input type="number" class="form-control" id="costeHora" value="53.78">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mecanizado">
+                        <label class="form-check-label" for="mecanizado">Mecanizado</label>
+                    </div>
+                    <div id="mecanizadoHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="mecanizadoHorasInput" placeholder="Horas">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="ajuste">
+                        <label class="form-check-label" for="ajuste">Ajuste</label>
+                    </div>
+                    <div id="ajusteHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="ajusteHorasInput" placeholder="Horas">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="caldereria">
+                        <label class="form-check-label" for="caldereria">Calderería</label>
+                    </div>
+                    <div id="caldereriaHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="caldereriaHorasInput" placeholder="Horas">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="verificado">
+                        <label class="form-check-label" for="verificado">Verificado</label>
+                    </div>
+                    <div id="verificadoHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="verificadoHorasInput" placeholder="Horas">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="trazado">
+                        <label class="form-check-label" for="trazado">Trazado</label>
+                    </div>
+                    <div id="trazadoHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="trazadoHorasInput" placeholder="Horas">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="otros">
+                        <label class="form-check-label" for="otros">Otros</label>
+                    </div>
+                    <div id="otrosHoras" class="d-none">
+                        <input type="number" class="form-control mt-2" id="otrosHorasInput" placeholder="Horas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="totalHoras" class="form-label">Subtotal Horas</label>
+                    <input type="number" class="form-control" id="totalHoras" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="importe" class="form-label">Importe</label>
+                    <input type="number" class="form-control" id="importe" disabled>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="horasExteriorCheck">
+                        <label class="form-check-label" for="horasExteriorCheck">Horas propias en el exterior</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="horasExterior" class="d-none">
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label for="horasExteriorInput" class="form-label">Horas</label>
+                        <input type="number" class="form-control" id="horasExteriorInput">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="importeExterior" class="form-label">Importe total</label>
+                        <input type="number" class="form-control" id="importeExterior" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h4>Horas comunes</h4>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="porcentajeTalleres" class="form-label">% sobre Horas propias fabricación talleres</label>
+                    <input type="number" class="form-control" id="porcentajeTalleres" value="15">
+                </div>
+            
+                <div class="col-md-6">
+                    <label for="porcentajeExterior" class="form-label">% sobre Horas propias fabricación en el Exterior</label>
+                    <input type="number" class="form-control" id="porcentajeExterior" value="5">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="totalHorasComunes" class="form-label">Subtotal Horas Comunes</label>
+                    <input type="number" class="form-control" id="totalHorasComunes" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="importeHorasComunes" class="form-label">Importe</label>
+                    <input type="number" class="form-control" id="importeHorasComunes" disabled>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="horasIngenieriaProduccion" class="form-label">Horas Ingeniería de Producción IPP</label>
+                    <input type="number" class="form-control" id="horasIngenieriaProduccion">
+                </div>
+                <div class="col-md-4">
+                    <label for="horasCalidad" class="form-label">Horas Calidad</label>
+                    <input type="number" class="form-control" id="horasCalidad">
+                </div>
+                <div class="col-md-4">
+                    <label for="horasGestionProducto" class="form-label">Horas Gestión de Producto y Postventa</label>
+                    <input type="number" class="form-control" id="horasGestionProducto">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="horasIngenieria" class="form-label">Horas Ingeniería</label>
+                    <input type="number" class="form-control" id="horasIngenieria">
+                </div>
+                <div class="col-md-4">
+                    <label for="horasCompras" class="form-label">Horas de Compras</label>
+                    <input type="number" class="form-control" id="horasCompras">
+                </div>
+                <div class="col-md-4">
+                    <label for="horasAlmacenes" class="form-label">Horas de Almacenes</label>
+                    <input type="number" class="form-control" id="horasAlmacenes">
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="totalHorasManoObraPropia" class="form-label">TOTAL HORAS MANO DE OBRA PROPIA</label>
+                    <input type="number" class="form-control" id="totalHorasManoObraPropia" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="importeTotalHorasManoObra" class="form-label">Importe total horas mano de obra</label>
+                    <input type="number" class="form-control" id="importeTotalHorasManoObra" disabled>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosTalleresPropiosCheck">
+                        <label class="form-check-label" for="costesExternosTalleresPropiosCheck">Costes Externos Talleres Propios</label>
+                    </div>
+                    <div id="costesExternosTalleresPropios" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="repuestosVentaCheck">
+                        <label class="form-check-label" for="repuestosVentaCheck">Repuestos para venta</label>
+                    </div>
+                    <div id="repuestosVenta" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosIPPComunesCheck">
+                        <label class="form-check-label" for="costesExternosIPPComunesCheck">Costes Externos IPP y Comunes</label>
+                    </div>
+                    <div id="costesExternosIPPComunes" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tratamientoTermicoCheck">
+                        <label class="form-check-label" for="tratamientoTermicoCheck">Tratamiento Térmico (Costes Ext. Comunes)</label>
+                    </div>
+                    <div id="tratamientoTermico" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Horas estimadas">
+                        <input type="number" class="form-control mt-2" placeholder="Coste hora" value="50">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="proteccionLimpiezaCheck">
+                        <label class="form-check-label" for="proteccionLimpiezaCheck">Protección y limpieza (Costes Ext. Comunes)</label>
+                    </div>
+                    <div id="proteccionLimpieza" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Horas estimadas">
+                        <input type="number" class="form-control mt-2" placeholder="Coste hora" value="40">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="endCheck">
+                        <label class="form-check-label" for="endCheck">END (Costes Ext. Calidad)</label>
+                    </div>
+                    <div id="end" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Horas estimadas">
+                        <input type="number" class="form-control mt-2" placeholder="Coste hora" value="50">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosCalidadCheck">
+                        <label class="form-check-label" for="costesExternosCalidadCheck">Costes Externos Calidad</label>
+                    </div>
+                    <div id="costesExternosCalidad" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosGestionProductoCheck">
+                        <label class="form-check-label" for="costesExternosGestionProductoCheck">Costes Externos Gestión de Producto</label>
+                    </div>
+                    <div id="costesExternosGestionProducto" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosIngenieriaCheck">
+                        <label class="form-check-label" for="costesExternosIngenieriaCheck">Costes Externos Ingeniería</label>
+                    </div>
+                    <div id="costesExternosIngenieria" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosComprasAlmacenesCheck">
+                        <label class="form-check-label" for="costesExternosComprasAlmacenesCheck">Costes Externos Compras y Almacenes</label>
+                    </div>
+                    <div id="costesExternosComprasAlmacenes" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="totalCostesExternos">Subtotal adquisiciones a terceros (Material y subcontratación):</label>
+                    <input type="number" class="form-control" id="totalCostesExternos" disabled>
+                </div>
+            </div>
+
+            <hr><hr>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h4>Costes Externos In Situ</h4>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesExternosTrabajosInSituCheck">
+                        <label class="form-check-label" for="costesExternosTrabajosInSituCheck">Costes Externos Trabajos In Situ</label>
+                    </div>
+                    <div id="costesExternosTrabajosInSitu" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Subcontratación">
+                        <input type="number" class="form-control mt-2" placeholder="Materiales Suministros">
+                        <input type="number" class="form-control mt-2" placeholder="Transportes">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="viajesCheck">
+                        <label class="form-check-label" for="viajesCheck">Viajes</label>
+                    </div>
+                    <div id="viajes" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Nº Personas">
+                        <input type="number" class="form-control mt-2" placeholder="Nº Viajes">
+                        <input type="number" class="form-control mt-2" placeholder="Coste Ud. Viaje">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="dietasCheck">
+                        <label class="form-check-label" for="dietasCheck">Dietas</label>
+                    </div>
+                    <div id="dietas" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Nº Personas">
+                        <input type="number" class="form-control mt-2" placeholder="Días">
+                        <input type="number" class="form-control mt-2" placeholder="Dieta diaría">
+                        <input type="number" class="form-control mt-2" placeholder="Alojamiento">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="alquilerCochesCheck">
+                        <label class="form-check-label" for="alquilerCochesCheck">Alquiler de coches</label>
+                    </div>
+                    <div id="alquilerCoches" class="d-none d-flex gap-4">
+                        <input type="number" class="form-control mt-2" placeholder="Nº Vehículos">
+                        <input type="number" class="form-control mt-2" placeholder="Días">
+                        <input type="number" class="form-control mt-2" placeholder="Alquiler Día">
+                        <input type="number" class="form-control mt-2" placeholder="Combustible">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="totalCostesExternosInSitu">Total Costes Externos In Situ</label>
+                        <input type="number" class="form-control" id="totalCostesExternosInSitu" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <hr><hr>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h4>Otros Costes Operacionales</h4>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="segurosTrabajosCheck" data-group="costesOperacionales">
+                        <label class="form-check-label" for="segurosTrabajosCheck">Seguros por la realización de Trabajos</label>
+                    </div>
+                    <div id="segurosTrabajos" class="d-none">
+                        <input type="number" class="form-control mt-2" placeholder="Importe" data-group="costesOperacionales">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="costesDotacionGarantiaCheck" data-group="costesOperacionales">
+                        <label class="form-check-label" for="costesDotacionGarantiaCheck">Costes Dotación de Garantía</label>
+                    </div>
+                    <div id="costesDotacionGarantia" class="d-none">
+                        <input type="number" class="form-control mt-2" placeholder="Importe" data-group="costesOperacionales">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="gastosFinancierosCheck" data-group="costesOperacionales">
+                        <label class="form-check-label" for="gastosFinancierosCheck">Gastos Financieros (cobros, avales, etc.)</label>
+                    </div>
+                    <div id="gastosFinancieros" class="d-none">
+                        <input type="number" class="form-control mt-2" placeholder="Importe" data-group="costesOperacionales">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="imprevistosCheck" data-group="costesOperacionales">
+                        <label class="form-check-label" for="imprevistosCheck">Imprevistos</label>
+                    </div>
+                    <div id="imprevistos" class="d-none">
+                        <input type="number" class="form-control mt-2" placeholder="Importe" data-group="costesOperacionales">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="totalSeguros">Total Otros Costes Operacionales:</label>
+                    <input type="number" class="form-control" id="totalSeguros" disabled>
+                </div>
+            </div>
+            
+            <hr><hr>
+            
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h4>TOTAL COSTES</h4>
+                </div>
+            </div>
+            <input type="text" class="form-control mt-2" id="totalCostes" disabled>
+            
+            <!-- Margen bruto -->
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="margenBruto">Margen Bruto:</label>
+                    <input type="text" class="form-control" id="margenBruto" disabled>
+                </div>
+                <div class="col">
+                    <label for="porcentajeMargenBruto">% s/ Pventa:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="porcentajeMargenBruto" disabled>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Costes generales -->
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="costesGenerales">Costes Generales:</label>
+                    <input type="text" class="form-control" id="costesGenerales" disabled>
+                </div>
+                <div class="col">
+                    <label for="porcentajeCostesGenerales">% Costes Generales:</label>
+                    <input type="text" class="form-control" id="porcentajeCostesGenerales" value="8.35" disabled>
+                </div>
+            </div>
+            
+            <!-- Costes totales -->
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="costesTotales">Costes Totales:</label>
+                    <input type="text" class="form-control" id="costesTotales" disabled>
+                </div>
+            </div>
+            
+            <!-- Resultado previsto -->
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="resultadoPrevisto">Resultado Previsto:</label>
+                    <input type="text" class="form-control" id="resultadoPrevisto" disabled>
+                </div>
+                <div class="col">
+                    <label for="porcentajeResultadoPrevisto">% Resultado Previsto:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="porcentajeResultadoPrevisto" disabled>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Precio de venta ofertado o contratado -->
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="precioVenta">Precio de Venta Ofertado o Contratado:</label>
+                    <input type="number" class="form-control" id="precioVenta" min="0">
+                </div>
+            </div>
+            
+
+
+
+
+
+
+
+        </form>
+
+        <div class="row mt-4">
+            <div class="col">
+                <button class="btn btn-primary" id="botonGenerar">Generar</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+nav {
+    height: 5rem;
+    font-size: 20px;
+    background-color: #e7e7e7 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+td,tr {
+    border: 1px solid black;
+    padding: 0.5rem;
+}
+
+textarea {
+    width: 90%;
+    height: 200px;
+}
+
+.cerrado {
+    background-color: #90f723;
+}
+
+.contenedor-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+main {
+    margin-top: 2rem;
+}

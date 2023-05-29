@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./../bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/logo.png" width="30" height="30" alt="Logotipo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Posventa
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="../Comprobar Facturación/index.html">Comprobar facturación</a>
+                    <a class="dropdown-item" href="../generadorPPTO/index.html">Generador PPTO</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    IPP
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="../Seguimiento de Obras/index.html">Seguimiento Ordenes de Fabricación</a>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <main class="container">
+        <h1 class="text-center mb-4">Procesador de datos de obras</h1>
+        <textarea id="inputText" class="form-control mb-3"></textarea>
+        <div class="contenedor-btns d-flex justify-content-between mb-3">
+            <button class="btn btn-primary" onclick="procesarDatos()">Procesar</button>
+            <button class="btn btn-secondary" onclick="copiarTabla()">Copiar</button>
+        </div>
+        <table id="resultTable" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Número de obra</th>
+                    <th>Cliente</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Coste</th>
+                    <th>Facturado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    
+    <br>
+</body>
+
+<script src="script.js"></script>
+</html>
