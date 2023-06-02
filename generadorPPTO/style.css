@@ -4,3 +4,21 @@ nav {
     background-color: #e7e7e7 !important;
     border-bottom: 1px solid #ccc;
 }
+
+thead {
+    border: 2px solid black;
+}
+
+th {
+    min-width: 100px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tr-item {
+    /* width: 20px; */
+    border: 1px solid red;
+}
